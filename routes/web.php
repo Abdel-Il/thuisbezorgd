@@ -19,6 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+Route::resource('/restaurant', 'RestaurantController');
+Route::resource('/food', 'ConsumableController');
+Route::resource('/user', 'LoginController');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('RestaurantController@update');
+Route::post('LoginController@update');

@@ -15,6 +15,16 @@
                     @endif
 
                     You are logged in!
+
+                    <a href="{{ route('restaurant.create') }}">Start nu</a>
+                    <a href="{{ route('restaurant.index') }}">Kijk hier</a>
+
+                    @foreach ($restaurant as $res)
+                        {{-- <h5 class="card-title"></h5> --}}
+                        <br>
+                        <a href="{{ route('restaurant.index', $res->id) }}">{{ $res->name }}</a>
+                    @endforeach
+
                 </div>
             </div>
         </div>
