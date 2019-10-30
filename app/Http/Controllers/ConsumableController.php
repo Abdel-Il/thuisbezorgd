@@ -12,7 +12,7 @@ class ConsumableController extends Controller
 {
     public function create()
     {
-    	$category = Category::all();
+    	$category = Category::get();
     	return view('food.create')->with('category', $category);
     }
 

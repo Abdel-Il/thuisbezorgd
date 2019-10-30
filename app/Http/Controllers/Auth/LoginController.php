@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -64,5 +67,23 @@ class LoginController extends Controller
         $user->save();
 
         return redirect(route('home'))->with('success', 'User has been updated');
+    }
+
+    public function getProfile()
+    {
+      $order = Auth::user()->order;
+      $order->transform(function($order, $key) {
+          $order->cart = unserialize($order->cart);
+          return $order;
+      });
+      
+      return view('user.profile')->with('order', $order);
+      
+    }
+
+    public function authenticated(Request $request, $user) {
+      if($user->admin) {
+        $this->redirectTo = '/admin';
+      }
     }
 }

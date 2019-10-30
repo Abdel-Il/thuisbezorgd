@@ -2,12 +2,16 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+
+    const ADMIN_TYPE = 'admin';
+    const DEFAULT_TYPE = 'default';
+
     use Notifiable;
 
     /**
@@ -37,8 +41,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function isAdmin()    {
+      return $this->isAdmin === self::ADMIN_TYPE;
+    }
+
     public function Restaurant()
     {
         return $this->hasMany('App\Restaurant');
+    }
+
+    public function Order()
+    {
+        return $this->hasMany('App\Order');
     }
 }

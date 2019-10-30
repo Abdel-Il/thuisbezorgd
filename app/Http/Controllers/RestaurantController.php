@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Restaurant;
+use App\Consumable;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -11,14 +12,16 @@ class RestaurantController extends Controller
     public function index()
     {
     	$restaurant = Restaurant::where('user_id', Auth::id())->get();
-    	return view('restaurant.index')->with('restaurant', $restaurant);
+        $consumable = Consumable::get();
+    	return view('restaurant.index', compact('restaurant', 'consumable'));
     }
 
 
     public function show($id)
     {
     	$restaurant = Restaurant::find();
-    	return view('restaurant.index')->with('restaurant', $restaurant);
+        $consumable = Consumable::find();
+    	return view('restaurant.index', compact('restaurant', 'consumable'));
     }
 
     public function create()

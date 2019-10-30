@@ -17,9 +17,12 @@
                         </div>
                     @endif
                     <h5>Hoofdgerechten</h5>
-                    <p>1</p>
-                    <p>2</p>
-                    <p>3</p>
+                    @foreach ($consumable as $con)
+                    <div class="containter">
+                        <p class="card-title m-0">{{ $con->title }}</p>
+                        <a class="nav-link btn btn-dark" href="{{ route('cart', ['id' => $con->id]) }}">Add to Cart</a>
+                    </div>
+                    @endforeach
                     <h5>Bijgerechten</h5>
                     <p>4</p>
                     <p>5</p>

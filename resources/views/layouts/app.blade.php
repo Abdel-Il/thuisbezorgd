@@ -49,11 +49,11 @@
                                 </li>
                             @endif
                         @else
-                            {{-- <a class="text-white nav-link" href="{{ route('product.shoppingCart') }}">
+                            <a class="text-white nav-link" href="{{ route('shoppingCart') }}">
                               <i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart
                               <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
-                            </a> --}}
-                            <a class="text-white nav-link" href="{{ route('auth.edit') }}">My profile</a>
+                            </a>
+                            {{-- <a class="text-white nav-link" href="{{ route('edit') }}">My profile</a> --}}
                             <li class="nav-item">
                                 <div class="navbar-nav navbar-nav-right">
                                     <a class="nav-link" href="{{ route('logout') }}"
