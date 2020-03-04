@@ -9,9 +9,9 @@
                 <thead>
                     <tr>
                         <th scope="col">Quantity</th>
-                        <th scope="col">con name</th>
-                        <th scope="col">con price</th>
-                        <th scope="col">con actions</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Actions</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>

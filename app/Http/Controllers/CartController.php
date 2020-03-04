@@ -21,7 +21,7 @@ class CartController extends Controller
         $cart = new Cart($oldCart);
         $cart->add($consumable, $consumable->id);
         $request->session()->put('cart', $cart);
-        return redirect()->route('home');
+        return redirect()->back();
     }
 
     public function reduceByOne(Request $request, $id)
@@ -33,7 +33,7 @@ class CartController extends Controller
         } else {
             Session::forget('cart');
         }
-        return redirect()->route('shoppingCart');
+        return redirect()->route('shoppingcart');
     }
 
     public function RemoveItem($id)
@@ -46,25 +46,25 @@ class CartController extends Controller
         } else {
             Session::forget('cart');
         }
-        return redirect()->route('shoppingCart');
+        return redirect()->route('shoppingcart');
     }
 
 
     public function getCart()
     {
         if (!Session::has('cart')) {
-            return view('shoppingCart');
+            return view('shopping-cart');
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        return view('shoppingCart', ['consumables' => $oldCart->items, 'totalPrice' => $oldCart->totalPrice]);
+        return view('shopping-cart', ['consumables' => $oldCart->items, 'totalPrice' => $oldCart->totalPrice]);
     }
 
 
     public function getCheckout()
     {
         if (!Session::has('cart')) {
-            return view('shoppingCart');
+            return view('shoppingcart');
         }
         // dd($request->$oldCart);
         $oldCart = Session::get('cart');
@@ -75,24 +75,22 @@ class CartController extends Controller
     public function postCheckout(Request $request)
     {
         $oldCart = Session::get('cart');
+        $user = User::get();
         $total = $oldCart->totalPrice;
         if (!Session::has('cart')) {
-            return redirect()->route('shoppingCart');
+            return redirect()->route('shoppingcart');
         }
         $oldCart = Session::get('cart');
-        // try {
-        // dd(price);
+        
         $order = new Order();
-        $order->address = $request->get('address');
-        $order->city = $request->get('city');
-        $order->cart = serialize($oldCart);
         $order->first_name = $request->get('first_name');
         $order->last_name = $request->get('last_name');
         $order->email = $request->get('email');
-        $order->user_id = $request->get('user_id');
+        $order->address = $request->get('address');
+        $order->city = $request->get('city');
+        $order->cart = serialize($oldCart);
+        $order->user_id = Auth::id();
         $order->price = $request->get('price');
-
-        Auth::user()->order()->save($order);
 
         $order->save();
 

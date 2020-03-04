@@ -76,7 +76,7 @@ class UserController extends Controller
 
         $user->save();
 
-	    return redirect(route('user.index'))->with('success', 'user has been added');
+	    return redirect(route('admin.user.index'))->with('success', 'user has been added');
 
     }
 
@@ -129,7 +129,7 @@ class UserController extends Controller
         $user->zipcode = $request->get('zipcode');
 	    $user->save();
 
-	    return redirect(route('user.index'))->with('success', 'Status has been updated');
+	    return redirect(route('admin.user.index'))->with('success', 'Status has been updated');
     }
 
     /**
@@ -143,7 +143,7 @@ class UserController extends Controller
       	$user = User::find($id);
      	$user->delete();
 
-     	return redirect(route('user.index'))->with('success', 'user has been deleted Successfully');
+     	return redirect(route('admin.user.index'))->with('success', 'user has been deleted Successfully');
     }
     
   //   public function getProfile()

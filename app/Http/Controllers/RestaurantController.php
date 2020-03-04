@@ -9,19 +9,18 @@ use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
 {
-    public function index()
+   public function index($id , Request $request)
     {
-    	$restaurant = Restaurant::where('user_id', Auth::id())->get();
-        $consumable = Consumable::get();
-    	return view('restaurant.index', compact('restaurant', 'consumable'));
+        return abort(404);
     }
 
 
-    public function show($id)
+    public function show($id, Request $request)
     {
-    	$restaurant = Restaurant::find();
-        $consumable = Consumable::find();
-    	return view('restaurant.index', compact('restaurant', 'consumable'));
+    	$restaurant = Restaurant::where('id',$id)->first();
+        $consumable = Consumable::where('restaurant_id', $id)->get();
+        $request->session()->put('restaurant_id', $id);
+        return view('restaurant.index')->with('restaurant', $restaurant);
     }
 
     public function create()

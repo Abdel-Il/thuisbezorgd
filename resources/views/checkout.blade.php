@@ -14,7 +14,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label text-md-right">First Name</label>
                     <div class="col-md-8">
-                        <input type="text" id="first_name" class="form-control" required name="first_name" {{-- value="{{ $user ?? ''->first_name }}" --}}>
+                        <input type="text" id="first_name" class="form-control" required name="first_name" {{-- value="{{ $user->first_name }}" --}}>
                     </div>
                 </div>
 
@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <input type="hidden" id="price" {{-- value="{{ $total }}" c --}}lass="form-control" required name="price">
+                <input type="hidden" id="price" value="{{ $total }}" class="form-control" required name="price">
                 <hr>
                 {{-- </div> --}}
                 <button type="submit" class="btn btn-success">Buy now</button>

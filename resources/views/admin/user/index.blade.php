@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col align-self-center">
-            <a class="nav-link btn btn-success" href="{{ route('user.create', ['id' => Auth::id()]) }}">
+            <a class="nav-link btn btn-success" href="{{ route('admin.user.create', ['id' => Auth::id()]) }}">
                 User maken
             </a>
         </div>
@@ -40,9 +40,9 @@
                         <td>{{ $user->last_name }}</td>
                         <td>{{ $user->email }}</td>
                         @if(!$user->isAdmin)
-                            <td><a href="{{ route('user.edit',$user->id)}}" class="btn btn-primary">Edit</a></td>
+                            <td><a href="{{ route('admin.user.edit',$user->id)}}" class="btn btn-primary">Edit</a></td>
                             <td>
-                                <form action="{{ route('user.destroy', $user->id)}}" method="post">
+                                <form action="{{ route('admin.user.destroy', $user->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">Delete</button>

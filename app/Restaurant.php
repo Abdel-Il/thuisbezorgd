@@ -17,6 +17,6 @@ class Restaurant extends Model
 
     public function Consumable()
     {
-        return $this->manyToMany('App\Consumable');
+        return $this->hasMany('App\Consumable');
     }
 }

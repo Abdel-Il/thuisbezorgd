@@ -13,16 +13,15 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
-
-                    <a href="{{ route('restaurant.create') }}">Start nu</a>
-                    <a href="{{ route('restaurant.index') }}">Kijk hier</a>
+                    <div class="">
+                        <b>All restaurants</b>
+                        <a class="text-right" href="{{ route('restaurant.create') }}">Start now</a> 
+                    </div>
 
                     @foreach ($restaurant as $res)
                         {{-- <h5 class="card-title"></h5> --}}
                         <br>
-                        <a href="{{ route('restaurant.index', $res->id) }}">{{ $res->name }}</a>
+                        <a href="{{ route('restaurant.show', [ $res->id]) }}">{{ $res->name }}</a>
                     @endforeach
 
                 </div>

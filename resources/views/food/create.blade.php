@@ -23,9 +23,11 @@
     <div class="form-group row">
         <label class="col-md-2 col-form-label text-md-right">Products category</label>
         <div class="col-md-8">
-            @foreach ($category as $cat)
-                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-            @endforeach
+            <select name="category_id">
+                <option value="1">Hoofdgerecht</option>
+                <option value="2">Bijgerecht</option>
+                <option value="3">Dranken</option>
+            </select>
         </div>
     </div>
 

@@ -5,33 +5,31 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">
-                    @foreach ($restaurant as $res)
-                        <h3 class="card-title m-0">{{ $res->name }}</h3>
-                    @endforeach
-                </div>
-                <div class="card-body">
+                    <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-                    <h5>Hoofdgerechten</h5>
-                    @foreach ($consumable as $con)
-                    <div class="containter">
-                        <p class="card-title m-0">{{ $con->title }}</p>
-                        <a class="nav-link btn btn-dark" href="{{ route('cart', ['id' => $con->id]) }}">Add to Cart</a>
-                    </div>
-                    @endforeach
-                    <h5>Bijgerechten</h5>
-                    <p>4</p>
-                    <p>5</p>
-                    <p>6</p>
-                    <h5>Dranken</h5>
-                    <p>7</p>
-                    <p>8</p>
-                    <p>9</p>
                 </div>
+            </div>
+            <div>
+                @if (Auth::id() === $restaurant->user_id)
+                    <a href="{{ route('food.create', []) }}">Product toevoegen</a>
+                    <a href="{{ route('restaurant.edit', $restaurant->id) }}">Restaurant wijzigen</a>
+                @endif
+
+
+                @foreach($restaurant->consumable as $consumable)
+                    <div class="row">
+                        <div class="col-4">
+                            <h5 class="">{{$consumable->title}}</h5>
+                            <p class="">{{$consumable->description}}</p>
+                            <p class="">{{$consumable->price}} euro</p>
+                            <a class="nav-link btn btn-dark" href="{{ route('cart', [ $consumable->id]) }}">Add to Cart</a>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
